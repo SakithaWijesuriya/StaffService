@@ -50,12 +50,12 @@ public class Payment extends javax.swing.JFrame {
         txtAmount = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtDate = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -123,10 +123,6 @@ public class Payment extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(90, 294, 100, 16);
 
-        txtDate.setDateFormatString("yyyy-MM-dd");
-        jPanel1.add(txtDate);
-        txtDate.setBounds(220, 340, 270, 25);
-
         jButton1.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
         jButton1.setText("Reset");
         jPanel1.add(jButton1);
@@ -168,11 +164,17 @@ public class Payment extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 526, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(158, 158, 158)
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 476, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(325, Short.MAX_VALUE)
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(131, 131, 131))
         );
 
         jPanel1.add(jPanel2);
@@ -254,6 +256,7 @@ public class Payment extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -265,7 +268,6 @@ public class Payment extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtAmount;
     private javax.swing.JTextField txtContactNo;
-    private com.toedter.calendar.JDateChooser txtDate;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextArea txtName;
     // End of variables declaration//GEN-END:variables
