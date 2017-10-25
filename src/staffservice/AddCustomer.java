@@ -5,11 +5,20 @@
  */
 package staffservice;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import static org.omg.CORBA.AnySeqHelper.insert;
+
 /**
  *
  * @author snwijesuriya
  */
 public class AddCustomer extends javax.swing.JFrame {
+    private Object conn;
+    private String insert;
 
     /**
      * Creates new form AddCustomer
@@ -41,11 +50,11 @@ public class AddCustomer extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtContactNo1 = new javax.swing.JTextField();
         txtContactNo2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
         txtContactNo3 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        txtContactNo4 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -137,10 +146,6 @@ public class AddCustomer extends javax.swing.JFrame {
         jPanel1.add(txtContactNo2);
         txtContactNo2.setBounds(220, 290, 270, 25);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bus 1", "Bus 2", "Bus 3", "Bus 4" }));
-        jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(220, 390, 270, 25);
-
         txtContactNo3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContactNo3ActionPerformed(evt);
@@ -165,17 +170,15 @@ public class AddCustomer extends javax.swing.JFrame {
         jButton3.setBounds(60, 520, 140, 25);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setLayout(null);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 526, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 476, Short.MAX_VALUE)
-        );
+        txtContactNo4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContactNo4ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtContactNo4);
+        txtContactNo4.setBounds(160, 370, 270, 25);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(60, 20, 530, 480);
@@ -210,8 +213,31 @@ public class AddCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+    String ID = txtName.getText();    
+    String Name = txtName.getText();
+    String contact = txtContactNo1.getText();
+    String starting = txtContactNo2.getText();
+    String destination = txtContactNo3.getText();
+    String busnumber = txtContactNo4.getText();   
+        try
+     {
+         
+Class.forName("com.mysql.jdbc.Driver");
+        String dbURL = "jdbc:mysql://localhost/staff_service";
+        String user = "root";
+        String pass = "root";
+        Connection conn = DriverManager.getConnection(dbURL, user, pass);
+         
+       Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery("insert into customer(customer_id,customer_name,,starting,destination,) values('"+ID+"','"+Name+"','"+starting+"','"+destination+"','"+busnumber+"')");
+                JOptionPane.showMessageDialog(null,"Inserted Successfully!");
+    System.out.println(rs);        // TODO add your handling code here:
+     }
+     catch(Exception e)
+     {
+         JOptionPane.showMessageDialog(null, e.getMessage() ,"Error", 1);
 
+     }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
@@ -240,6 +266,10 @@ public class AddCustomer extends javax.swing.JFrame {
    frame2.setVisible(true);
  
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txtContactNo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContactNo4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContactNo4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,7 +310,6 @@ public class AddCustomer extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -294,6 +323,7 @@ public class AddCustomer extends javax.swing.JFrame {
     private javax.swing.JTextField txtContactNo1;
     private javax.swing.JTextField txtContactNo2;
     private javax.swing.JTextField txtContactNo3;
+    private javax.swing.JTextField txtContactNo4;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextArea txtName;
     // End of variables declaration//GEN-END:variables
